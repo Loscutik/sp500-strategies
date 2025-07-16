@@ -1,0 +1,7 @@
+ jupyter
+ matplotlib
+ seaborn
+ scikit-learn==1.5.1
+ scipy==1.14.0
+ tabulate
+ ta

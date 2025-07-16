@@ -1,0 +1,4 @@
+randomforestclassifier:
+Best parameters: {'randomforestclassifier__max_depth': 5, 'randomforestclassifier__max_features': None, 'randomforestclassifier__min_samples_leaf': 3, 'randomforestclassifier__n_estimators': 200, 'reduce_dim': FastICA(), 'reduce_dim__n_components': 2, 'transformer': target_robust_not_indicators}
+Best score: 0.5145438250195645
+Grid serach time: 141.0637613400002 minutes
