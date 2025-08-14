@@ -1,6 +1,13 @@
-from typing import Iterable
-from helpers import isnumber, is_iterable, is_subdict
+from typing import Iterable, Protocol
+import warnings
+
+
 import pandas as pd
+from sklearn.base import BaseEstimator
+
+from helpers import isnumber, is_iterable, is_subdict
+from helpers import ProgressdownDecorator
+
 
 def cv_scores(grid_search, par_names=None, score='score'):
     """
@@ -183,7 +190,6 @@ def cv_scores_on_splits_per_param(grid_search, par_name, splits, scores='roc_auc
     return scores_matrix
 
 
-
 def cv_scores_on_splits(grid_search, n=3, scores:Iterable|str|None=None, confusion_matrix_cells: Iterable|None=None):
     """
     Calculate cross-validation scores on splits for a given grid search object.
@@ -352,3 +358,138 @@ def cv_scores_on_splits_by_param(grid_search, param_name:str, score:str='roc_auc
                             continue
 
     return score_matrix
+
+
+class Cv_splitter(Protocol):
+    def split(self, X): ...
+
+def custom_warning_handler(ws, shown_warnings):
+        for w in ws:
+            w_id = w.filename+':'+str(w.lineno)
+            if w_id not in shown_warnings:
+                shown_warnings.add(w_id)
+                print(f"\nWarning: {w_id}: {w.category.__name__}: {w.message}")
+                
+def compare_scores_on_splits(model_tuples:tuple[str,BaseEstimator]|list[tuple[str,BaseEstimator]],
+                             cv:Cv_splitter,
+                             X:pd.DataFrame,
+                             y:pd.Series,
+                             score_names:str|list[str]=['accuracy', 'roc_auc'],
+                             verbose=True) -> pd.DataFrame: 
+    """
+    Evaluates multiple machine learning models across different data splits using cross-validation.
+
+    Parameters:
+    ----------
+    model_tuples : tuple or list of tuples
+        A tuple or list of tuples where each tuple contains a model name (str) and the corresponding estimator (BaseEstimator).
+    
+    cv : Cv_splitter, optional
+        Cross-validation splitter instance that defines the train-test split strategy (default is tscv_blocking_chosen).
+    
+    score_names : str or list of str, optional
+        A string or list of strings specifying the evaluation metrics to compute (default: ['accuracy', 'roc_auc', 'f1']).
+    
+    X : pd.DataFrame, optional
+        Feature dataset used for model evaluation (default: X_train).
+    
+    y : pd.Series, optional
+        Target values corresponding to X (default: y_train).
+
+    Returns:
+    -------
+    scores : pd.DataFrame
+        A DataFrame containing model performance scores across splits.
+        Columns are a MultiIndex of model names and score metrics, indexed by split number.
+
+    Notes:
+    ------
+    - Models are fitted on the training indices provided by the cross-validation splitter.
+    - Scores are calculated for each test split using a predefined scoring function.
+
+    Example:
+    --------
+    >>> models = [('RandomForest', RandomForestClassifier()), ('LogisticRegression', LogisticRegression())]
+    >>> cv = TimeSeriesSplit(n_splits=5)
+    >>> compare_scores_on_splits(models, cv, ['accuracy', 'f1'], X_train, y_train)
+    """
+    from sklearn.metrics import get_scorer
+
+    if isinstance(score_names, str) :
+        score_names = [score_names]
+
+    if not isinstance(model_tuples, list):
+        model_tuples = [model_tuples]
+    
+    model_names = [model_tuple[0] if isinstance(model_tuple, tuple) else str(model_tuple) for model_tuple in model_tuples ]
+    
+    if verbose:
+        print(f'Comparing scores on splits with {len(model_tuples)} models: \"{"\", \"".join(model_names)}\".')
+        progressdown_decorator = ProgressdownDecorator(len(model_tuples), lambda model, X, y: f'\nfit the models on {len(X)} samples .')
+    else:
+        progressdown_decorator = lambda f: f
+    
+    @progressdown_decorator
+    def fit(model, X, y): model.fit(X, y) 
+    
+    scores = pd.DataFrame(columns=pd.MultiIndex.from_product([model_names, score_names]), index=pd.Index(range(11), name='splits'))
+    scorers = {score_name: get_scorer(score_name) for score_name in score_names}
+    i = 0
+    shown_warnings = set()
+    for tr_idx, ts_idx in cv.split(X):
+        for model_name, model in model_tuples:
+            with warnings.catch_warnings(record=True) as w:
+                fit(model, X.iloc[tr_idx], y.iloc[tr_idx])
+                custom_warning_handler(w, shown_warnings)
+
+            for score_name in score_names:
+                scores.loc[i, (model_name, score_name)] = scorers[score_name](model, X.iloc[ts_idx], y.iloc[ts_idx])
+        i += 1
+    return scores
+
+def predictions_on_splits(models:list[BaseEstimator]|BaseEstimator, 
+                          cv:Cv_splitter,
+                          X:pd.DataFrame,
+                          y:pd.Series,
+                          verbose=True)->dict[list, list]:
+    
+    if isinstance(models, BaseEstimator):
+        models = [models]
+    num_models = len(models)
+
+    predictions_proba = [[] for _ in range(num_models)]
+    predictions = [[] for _ in range(num_models)]
+    predicted_probabilities = []
+    predicted = [] 
+
+    if verbose:
+        print(f'Predicting on splits with {num_models} models.')
+        progressdown_decorator = ProgressdownDecorator(num_models, lambda model, X, y, split_num: f'\nSplit {split_num+1}: fit and predict on the models on {len(X)} samples .')
+    else:
+        progressdown_decorator = lambda f: f
+    
+    @progressdown_decorator
+    def fit(model, X, y, split_num): model.fit(X, y) 
+
+    shown_warnings = set()
+    for split_num, (train_index, test_index) in enumerate(cv.split(X)):
+        X_train_fold, X_val_fold = X.iloc[train_index], X.iloc[test_index]
+        y_train_fold, y_val_fold = y.iloc[train_index], y.iloc[test_index]
+        for i, model in enumerate(models):
+            with warnings.catch_warnings(record=True) as w:
+                fit(model, X_train_fold, y_train_fold, split_num)
+                custom_warning_handler(w, shown_warnings)
+    
+            res = model.predict_proba(X_val_fold)
+            predictions_proba[i].append(pd.Series(res[:, 1], index=X_val_fold.index))
+            res = model.predict(X_val_fold)
+            predictions[i].append(pd.Series(res, index=X_val_fold.index))
+
+
+    for i in range(num_models):
+        predicted_probabilities.append(pd.concat(predictions_proba[i]))
+        predicted.append(pd.concat(predictions[i]))
+    return {
+        'predicted_probabilities': predicted_probabilities,
+        'predicted': predicted,
+    }

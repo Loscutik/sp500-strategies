@@ -144,6 +144,7 @@ def add_data_frames_to_file(path: str, dfs: dict, columns: Iterable|None = None)
             f.write('\n')
     print(f'--- data is saved to {path} ---')
 
+
 def confusions_to_file(path: str, scores_dict: dict):
     """
     adds the confusion matrices from the dictionary of those into a file.
@@ -158,3 +159,4 @@ def confusions_to_file(path: str, scores_dict: dict):
             f.write(f'\n{classificator_name}\n'+'*'*100 +'\n')
             f.write(DataFrames_to_matrix_str(best_res[['confusion_matrix', 'labels']].apply(lambda cfm: pd.DataFrame(cfm['confusion_matrix'],index=cfm['labels'], columns=cfm['labels']), axis=1), cols=4))
         print(f'--- confusion matrices are saved in {path} ---')
+

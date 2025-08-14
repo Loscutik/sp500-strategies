@@ -1,230 +1,230 @@
 ## Select transformer and dimention reducer
 
 ### logisticregression
-|    | split   | set   |   C | n_components   | solver   | transformer                       | reduce_dim   |   accuracy |    roc_auc |
-|---:|:--------|:------|----:|:---------------|:---------|:----------------------------------|:-------------|-----------:|-----------:|
-|  0 | split2  | test  | 1   | 5              | saga     | ordinal_quantile_power            | FastICA()    |   0.629    | nan        |
-|  1 | split2  | test  | 1.5 | 5              | saga     | ordinal_quantile_power            | FastICA()    |   0.628    | nan        |
-|  2 | split5  | test  | 1   | -              | saga     | target_std_quantile_power_kbins_q | passthrough  |   0.568    | nan        |
-|  3 | split5  | test  | 1   | -              | saga     | target_quantile_power_kbins_q     | passthrough  |   0.564    | nan        |
-|  4 | split6  | test  | 1   | 2              | saga     | ordinal_max_abs_not_indicators    | FastICA()    |   0.546    | nan        |
-|  5 | split6  | test  | 1   | 2              | saga     | ordinal_quantile_power            | FastICA()    |   0.546    | nan        |
-|  6 | split5  | test  | 1.5 | None           | saga     | target_quantile_power             | FastICA()    | nan        |   0.576605 |
-|  7 | split5  | test  | 1   | None           | saga     | target_quantile_power             | FastICA()    | nan        |   0.575773 |
-|  8 | split1  | test  | 1.5 | None           | saga     | drop_quantile_power_kbins_q       | FastICA()    | nan        |   0.56497  |
-|  9 | split8  | test  | 1.5 | 5              | saga     | target_max_abs_not_indicators     | FastICA()    | nan        |   0.555059 |
-| 10 | split8  | test  | 1   | 5              | saga     | target_max_abs_not_indicators     | FastICA()    | nan        |   0.555051 |
-| 11 | split7  | test  | 1   | -              | saga     | drop_quantile_power               | passthrough  |   0.518    | nan        |
-| 12 | split7  | test  | 1   | 5              | saga     | drop_no_transform_digit_cols      | FastICA()    | nan        |   0.525987 |
-| 13 | split7  | test  | 1   | 5              | saga     | ordinal_no_transform_digit_cols   | FastICA()    | nan        |   0.525987 |
-| 14 | split7  | test  | 1.5 | -              | saga     | drop_quantile_power               | passthrough  |   0.517    | nan        |
-| 15 | split7  | train | 1   | None           | saga     | target_quantile_power_kbins_q     | FastICA()    |   0.532022 | nan        |
-| 16 | split7  | train | 1.5 | -              | saga     | target_quantile_power_kbins_q     | passthrough  | nan        |   0.539275 |
-| 17 | split7  | train | 1.5 | None           | saga     | target_quantile_power_kbins_q     | FastICA()    |   0.532096 |   0.539721 |
-| 18 | split9  | test  | 1   | 2              | saga     | drop_no_transform_digit_cols      | FastICA()    | nan        |   0.530101 |
-| 19 | split9  | test  | 1   | 8              | saga     | ordinal_no_transform_digit_cols   | FastICA()    |   0.543    | nan        |
-| 20 | split9  | test  | 1   | 8              | saga     | target_no_transform_digit_cols    | FastICA()    |   0.543    | nan        |
-| 21 | split9  | test  | 1.5 | 2              | saga     | target_no_transform_digit_cols    | FastICA()    | nan        |   0.530101 |
-| 22 | split9  | train | 1   | None           | saga     | target_std_quantile_power_kbins_q | FastICA()    |   0.532721 |   0.538721 |
-| 23 | split9  | train | 1.5 | None           | saga     | target_quantile_power_kbins_q     | FastICA()    |   0.532426 |   0.538531 |
+|    | split   | set   | reduce_dim   |   C | solver   | transformer                       | n_components   |   accuracy |    roc_auc |
+|---:|:--------|:------|:-------------|----:|:---------|:----------------------------------|:---------------|-----------:|-----------:|
+|  0 | split2  | test  | FastICA()    | 1   | saga     | ordinal_quantile_power            | 5              |   0.629    | nan        |
+|  1 | split2  | test  | FastICA()    | 1.5 | saga     | ordinal_quantile_power            | 5              |   0.628    | nan        |
+|  2 | split5  | test  | passthrough  | 1   | saga     | target_std_quantile_power_kbins_q | -              |   0.568    | nan        |
+|  3 | split5  | test  | passthrough  | 1   | saga     | target_quantile_power_kbins_q     | -              |   0.564    | nan        |
+|  4 | split6  | test  | FastICA()    | 1   | saga     | ordinal_max_abs_not_indicators    | 2              |   0.546    | nan        |
+|  5 | split6  | test  | FastICA()    | 1   | saga     | ordinal_quantile_power            | 2              |   0.546    | nan        |
+|  6 | split5  | test  | FastICA()    | 1.5 | saga     | target_quantile_power             | None           | nan        |   0.576605 |
+|  7 | split5  | test  | FastICA()    | 1   | saga     | target_quantile_power             | None           | nan        |   0.575773 |
+|  8 | split1  | test  | FastICA()    | 1.5 | saga     | drop_quantile_power_kbins_q       | None           | nan        |   0.56497  |
+|  9 | split8  | test  | FastICA()    | 1.5 | saga     | target_max_abs_not_indicators     | 5              | nan        |   0.555059 |
+| 10 | split8  | test  | FastICA()    | 1   | saga     | target_max_abs_not_indicators     | 5              | nan        |   0.555051 |
+| 11 | split7  | test  | FastICA()    | 1   | saga     | drop_no_transform_digit_cols      | 5              | nan        |   0.525987 |
+| 12 | split7  | test  | FastICA()    | 1   | saga     | ordinal_no_transform_digit_cols   | 5              | nan        |   0.525987 |
+| 13 | split7  | test  | passthrough  | 1   | saga     | drop_quantile_power               | -              |   0.518    | nan        |
+| 14 | split7  | test  | passthrough  | 1.5 | saga     | drop_quantile_power               | -              |   0.517    | nan        |
+| 15 | split7  | train | FastICA()    | 1   | saga     | target_quantile_power_kbins_q     | None           |   0.532022 | nan        |
+| 16 | split7  | train | FastICA()    | 1.5 | saga     | target_quantile_power_kbins_q     | None           |   0.532096 |   0.539721 |
+| 17 | split7  | train | passthrough  | 1.5 | saga     | target_quantile_power_kbins_q     | -              | nan        |   0.539275 |
+| 18 | split9  | test  | FastICA()    | 1   | saga     | drop_no_transform_digit_cols      | 2              | nan        |   0.530101 |
+| 19 | split9  | test  | FastICA()    | 1   | saga     | ordinal_no_transform_digit_cols   | 8              |   0.543    | nan        |
+| 20 | split9  | test  | FastICA()    | 1   | saga     | target_no_transform_digit_cols    | 8              |   0.543    | nan        |
+| 21 | split9  | test  | FastICA()    | 1.5 | saga     | target_no_transform_digit_cols    | 2              | nan        |   0.530101 |
+| 22 | split9  | train | FastICA()    | 1   | saga     | target_std_quantile_power_kbins_q | None           |   0.532721 |   0.538721 |
+| 23 | split9  | train | FastICA()    | 1.5 | saga     | target_quantile_power_kbins_q     | None           |   0.532426 |   0.538531 |
 
 ### gaussiannb
-|    | split   | set   | transformer                       |   var_smoothing | n_components   | reduce_dim   |   accuracy |    roc_auc |
-|---:|:--------|:------|:----------------------------------|----------------:|:---------------|:-------------|-----------:|-----------:|
-|  0 | split2  | test  | drop_robust_not_indicators        |           1e-06 | 2              | FastICA()    |   0.627    | nan        |
-|  1 | split2  | test  | ordinal_quantile_power            |           1e-11 | 2              | FastICA()    |   0.626    | nan        |
-|  2 | split1  | test  | ordinal_standard_robust           |           1e-06 | 8              | FastICA()    |   0.561    | nan        |
-|  3 | split6  | test  | ordinal_no_transform_digit_cols   |           1e-11 | 2              | FastICA()    |   0.561    | nan        |
-|  4 | split6  | test  | target_no_transform_digit_cols    |           1e-11 | 2              | FastICA()    |   0.561    | nan        |
-|  5 | split5  | test  | target_standard_not_indicators    |           1e-09 | None           | FastICA()    | nan        |   0.566628 |
-|  6 | split1  | test  | ordinal_quantile_power_kbins_u    |           1e-09 | 8              | FastICA()    | nan        |   0.566202 |
-|  7 | split5  | test  | target_quantile_power_kbins_q     |           1e-11 | None           | FastICA()    | nan        |   0.565913 |
-|  8 | split1  | test  | ordinal_standard_not_indicators   |           1e-06 | 8              | FastICA()    | nan        |   0.56557  |
-|  9 | split6  | test  | ordinal_max_abs_not_indicators    |           1e-06 | 2              | FastICA()    | nan        |   0.561573 |
-| 10 | split7  | test  | drop_no_transform_digit_cols      |           1e-06 | 2              | FastICA()    | nan        |   0.528819 |
-| 11 | split7  | test  | ordinal_no_transform_digit_cols   |           1e-09 | 2              | FastICA()    | nan        |   0.528827 |
-| 12 | split7  | test  | ordinal_no_transform_digit_cols   |           1e-11 | 2              | FastICA()    |   0.527    | nan        |
-| 13 | split7  | test  | target_no_transform_digit_cols    |           1e-11 | 2              | FastICA()    |   0.527    | nan        |
-| 14 | split7  | train | target_quantile_power_kbins_q     |           1e-09 | None           | FastICA()    | nan        |   0.531478 |
-| 15 | split7  | train | target_quantile_power_kbins_q     |           1e-11 | None           | FastICA()    |   0.526838 | nan        |
-| 16 | split7  | train | target_std_quantile_power_kbins_q |           1e-06 | None           | FastICA()    |   0.525882 |   0.533019 |
-| 17 | split9  | test  | drop_quantile_power_kbins_u       |           1e-11 | 8              | FastICA()    | nan        |   0.5271   |
-| 18 | split9  | test  | ordinal_standard_not_indicators   |           1e-11 | 8              | FastICA()    |   0.551    | nan        |
-| 19 | split9  | test  | target_standard                   |           1e-06 | 8              | FastICA()    | nan        |   0.528976 |
-| 20 | split9  | test  | target_standard                   |           1e-11 | 8              | FastICA()    |   0.55     | nan        |
-| 21 | split9  | train | target_quantile_power_kbins_q     |           1e-06 | None           | FastICA()    |   0.527647 | nan        |
-| 22 | split9  | train | target_std_quantile_power_kbins_q |           1e-06 | None           | FastICA()    | nan        |   0.531606 |
-| 23 | split9  | train | target_std_quantile_power_kbins_q |           1e-09 | None           | FastICA()    |   0.527684 | nan        |
-| 24 | split9  | train | target_std_quantile_power_kbins_q |           1e-11 | None           | FastICA()    | nan        |   0.531228 |
+|    | split   | set   | transformer                       |   var_smoothing | reduce_dim   | n_components   |   accuracy |    roc_auc |
+|---:|:--------|:------|:----------------------------------|----------------:|:-------------|:---------------|-----------:|-----------:|
+|  0 | split2  | test  | drop_robust_not_indicators        |           1e-06 | FastICA()    | 2              |   0.627    | nan        |
+|  1 | split2  | test  | ordinal_quantile_power            |           1e-11 | FastICA()    | 2              |   0.626    | nan        |
+|  2 | split1  | test  | ordinal_standard_robust           |           1e-06 | FastICA()    | 8              |   0.561    | nan        |
+|  3 | split6  | test  | ordinal_no_transform_digit_cols   |           1e-11 | FastICA()    | 2              |   0.561    | nan        |
+|  4 | split6  | test  | target_no_transform_digit_cols    |           1e-11 | FastICA()    | 2              |   0.561    | nan        |
+|  5 | split5  | test  | target_standard_not_indicators    |           1e-09 | FastICA()    | None           | nan        |   0.566628 |
+|  6 | split1  | test  | ordinal_quantile_power_kbins_u    |           1e-09 | FastICA()    | 8              | nan        |   0.566202 |
+|  7 | split5  | test  | target_quantile_power_kbins_q     |           1e-11 | FastICA()    | None           | nan        |   0.565913 |
+|  8 | split1  | test  | ordinal_standard_not_indicators   |           1e-06 | FastICA()    | 8              | nan        |   0.56557  |
+|  9 | split6  | test  | ordinal_max_abs_not_indicators    |           1e-06 | FastICA()    | 2              | nan        |   0.561573 |
+| 10 | split7  | test  | drop_no_transform_digit_cols      |           1e-06 | FastICA()    | 2              | nan        |   0.528819 |
+| 11 | split7  | test  | ordinal_no_transform_digit_cols   |           1e-09 | FastICA()    | 2              | nan        |   0.528827 |
+| 12 | split7  | test  | ordinal_no_transform_digit_cols   |           1e-11 | FastICA()    | 2              |   0.527    | nan        |
+| 13 | split7  | test  | target_no_transform_digit_cols    |           1e-11 | FastICA()    | 2              |   0.527    | nan        |
+| 14 | split7  | train | target_quantile_power_kbins_q     |           1e-09 | FastICA()    | None           | nan        |   0.531478 |
+| 15 | split7  | train | target_quantile_power_kbins_q     |           1e-11 | FastICA()    | None           |   0.526838 | nan        |
+| 16 | split7  | train | target_std_quantile_power_kbins_q |           1e-06 | FastICA()    | None           |   0.525882 |   0.533019 |
+| 17 | split9  | test  | drop_quantile_power_kbins_u       |           1e-11 | FastICA()    | 8              | nan        |   0.5271   |
+| 18 | split9  | test  | ordinal_standard_not_indicators   |           1e-11 | FastICA()    | 8              |   0.551    | nan        |
+| 19 | split9  | test  | target_standard                   |           1e-06 | FastICA()    | 8              | nan        |   0.528976 |
+| 20 | split9  | test  | target_standard                   |           1e-11 | FastICA()    | 8              |   0.55     | nan        |
+| 21 | split9  | train | target_quantile_power_kbins_q     |           1e-06 | FastICA()    | None           |   0.527647 | nan        |
+| 22 | split9  | train | target_std_quantile_power_kbins_q |           1e-06 | FastICA()    | None           | nan        |   0.531606 |
+| 23 | split9  | train | target_std_quantile_power_kbins_q |           1e-09 | FastICA()    | None           |   0.527684 | nan        |
+| 24 | split9  | train | target_std_quantile_power_kbins_q |           1e-11 | FastICA()    | None           | nan        |   0.531228 |
 
 ### randomforestclassifier
-|    | split   | set   | max_depth   | transformer                        | n_components   | reduce_dim   |   accuracy |    roc_auc |
-|---:|:--------|:------|:------------|:-----------------------------------|:---------------|:-------------|-----------:|-----------:|
-|  0 | split2  | test  | 2           | ordinal_max_abs_not_indicators     | 5              | FastICA()    |      0.635 | nan        |
-|  1 | split2  | test  | 2           | target_standard                    | 5              | FastICA()    |      0.635 | nan        |
-|  2 | split6  | test  | 2           | target_no_transform_digit_cols     | 2              | FastICA()    |      0.563 | nan        |
-|  3 | split6  | test  | 2           | ordinal_no_transform_digit_cols    | 2              | FastICA()    |      0.562 | nan        |
-|  4 | split5  | test  | None        | drop_quantile_power                | None           | FastICA()    |      0.56  | nan        |
-|  5 | split5  | test  | 2           | target_standard_robust             | None           | FastICA()    |    nan     |   0.584012 |
-|  6 | split5  | test  | 2           | ordinal_standard_robust            | -              | passthrough  |    nan     |   0.576981 |
-|  7 | split1  | test  | 2           | drop_standard_not_indicators       | 8              | FastICA()    |    nan     |   0.568687 |
-|  8 | split1  | test  | 2           | drop_standard_not_indicators       | 5              | FastICA()    |    nan     |   0.564901 |
-|  9 | split8  | test  | 2           | drop_standard_not_indicators       | 2              | FastICA()    |    nan     |   0.564803 |
-| 10 | split7  | test  | 2           | target_no_transform_digit_cols     | 2              | FastICA()    |    nan     |   0.538713 |
-| 11 | split7  | test  | None        | drop_std_quantile_power_kbins_q    | 2              | FastICA()    |      0.529 | nan        |
-| 12 | split7  | test  | None        | ordinal_std_quantile_power_kbins_q | None           | FastICA()    |      0.528 | nan        |
-| 13 | split7  | test  | None        | target_no_transform_digit_cols     | 5              | FastICA()    |    nan     |   0.534069 |
-| 14 | split7  | train | None        | ordinal_quantile_power_kbins_u     | 2              | FastICA()    |      1     |   1        |
-| 15 | split7  | train | None        | ordinal_std_quantile_power_kbins_u | 2              | FastICA()    |      1     |   1        |
-| 16 | split9  | test  | 2           | drop_quantile_power_kbins_u        | 5              | FastICA()    |      0.55  | nan        |
-| 17 | split9  | test  | None        | drop_quantile_power_kbins_u        | None           | FastICA()    |    nan     |   0.564145 |
-| 18 | split9  | test  | None        | ordinal_no_transform_digit_cols    | 5              | FastICA()    |      0.548 |   0.547615 |
-| 19 | split9  | train | None        | ordinal_no_transform_digit_cols    | 2              | FastICA()    |      1     | nan        |
-| 20 | split9  | train | None        | ordinal_quantile_power_kbins_q     | 2              | FastICA()    |    nan     |   1        |
-| 21 | split9  | train | None        | ordinal_std_quantile_power_kbins_u | 2              | FastICA()    |      1     |   1        |
+|    | split   | set   | transformer                        | max_depth   | reduce_dim   | n_components   |   accuracy |    roc_auc |
+|---:|:--------|:------|:-----------------------------------|:------------|:-------------|:---------------|-----------:|-----------:|
+|  0 | split2  | test  | ordinal_max_abs_not_indicators     | 2           | FastICA()    | 5              |      0.635 | nan        |
+|  1 | split2  | test  | target_standard                    | 2           | FastICA()    | 5              |      0.635 | nan        |
+|  2 | split6  | test  | target_no_transform_digit_cols     | 2           | FastICA()    | 2              |      0.563 | nan        |
+|  3 | split6  | test  | ordinal_no_transform_digit_cols    | 2           | FastICA()    | 2              |      0.562 | nan        |
+|  4 | split5  | test  | drop_quantile_power                | None        | FastICA()    | None           |      0.56  | nan        |
+|  5 | split5  | test  | target_standard_robust             | 2           | FastICA()    | None           |    nan     |   0.584012 |
+|  6 | split5  | test  | ordinal_standard_robust            | 2           | passthrough  | -              |    nan     |   0.576981 |
+|  7 | split1  | test  | drop_standard_not_indicators       | 2           | FastICA()    | 8              |    nan     |   0.568687 |
+|  8 | split1  | test  | drop_standard_not_indicators       | 2           | FastICA()    | 5              |    nan     |   0.564901 |
+|  9 | split8  | test  | drop_standard_not_indicators       | 2           | FastICA()    | 2              |    nan     |   0.564803 |
+| 10 | split7  | test  | drop_std_quantile_power_kbins_q    | None        | FastICA()    | 2              |      0.529 | nan        |
+| 11 | split7  | test  | ordinal_std_quantile_power_kbins_q | None        | FastICA()    | None           |      0.528 | nan        |
+| 12 | split7  | test  | target_no_transform_digit_cols     | 2           | FastICA()    | 2              |    nan     |   0.538713 |
+| 13 | split7  | test  | target_no_transform_digit_cols     | None        | FastICA()    | 5              |    nan     |   0.534069 |
+| 14 | split7  | train | ordinal_quantile_power_kbins_u     | None        | FastICA()    | 2              |      1     |   1        |
+| 15 | split7  | train | ordinal_std_quantile_power_kbins_u | None        | FastICA()    | 2              |      1     |   1        |
+| 16 | split9  | test  | drop_quantile_power_kbins_u        | 2           | FastICA()    | 5              |      0.55  | nan        |
+| 17 | split9  | test  | drop_quantile_power_kbins_u        | None        | FastICA()    | None           |    nan     |   0.564145 |
+| 18 | split9  | test  | ordinal_no_transform_digit_cols    | None        | FastICA()    | 5              |      0.548 |   0.547615 |
+| 19 | split9  | train | ordinal_no_transform_digit_cols    | None        | FastICA()    | 2              |      1     | nan        |
+| 20 | split9  | train | ordinal_quantile_power_kbins_q     | None        | FastICA()    | 2              |    nan     |   1        |
+| 21 | split9  | train | ordinal_std_quantile_power_kbins_u | None        | FastICA()    | 2              |      1     |   1        |
 
 ### histgradientboostingclassifier
-|    | split   | set   | transformer                        | max_depth   | n_components   | reduce_dim   |   accuracy |    roc_auc |
-|---:|:--------|:------|:-----------------------------------|:------------|:---------------|:-------------|-----------:|-----------:|
-|  0 | split2  | test  | ordinal_quantile_power             | 5           | 5              | FastICA()    |   0.625    | nan        |
-|  1 | split2  | test  | target_max_abs_not_indicators      | 5           | 8              | FastICA()    |   0.623    | nan        |
-|  2 | split5  | test  | target_robust_not_indicators       | 5           | None           | FastICA()    |   0.561    | nan        |
-|  3 | split6  | test  | drop_quantile_power_kbins_u        | None        | 8              | FastICA()    |   0.561    | nan        |
-|  4 | split5  | test  | target_standard_robust             | 5           | None           | FastICA()    |   0.56     | nan        |
-|  5 | split2  | test  | target_quantile_power_kbins_q      | None        | 5              | FastICA()    | nan        |   0.571879 |
-|  6 | split5  | test  | ordinal_no_transform_digit_cols    | 5           | 5              | FastICA()    | nan        |   0.569402 |
-|  7 | split10 | test  | drop_std_quantile_power_kbins_u    | 5           | 8              | FastICA()    | nan        |   0.568561 |
-|  8 | split5  | test  | ordinal_quantile_power             | 5           | None           | FastICA()    | nan        |   0.566482 |
-|  9 | split1  | test  | target_quantile_power              | None        | 8              | FastICA()    | nan        |   0.562149 |
-| 10 | split7  | test  | drop_no_transform_digit_cols       | 5           | 2              | FastICA()    | nan        |   0.537153 |
-| 11 | split7  | test  | drop_no_transform_digit_cols       | None        | None           | FastICA()    |   0.532    |   0.539103 |
-| 12 | split7  | test  | drop_quantile_power_kbins_u        | None        | None           | FastICA()    |   0.531    | nan        |
-| 13 | split7  | train | drop_standard                      | None        | None           | FastICA()    |   0.645331 |   0.732648 |
-| 14 | split7  | train | target_quantile_power              | None        | -              | passthrough  |   0.653051 |   0.732806 |
-| 15 | split9  | test  | drop_robust_not_indicators         | 5           | 5              | FastICA()    |   0.556    | nan        |
-| 16 | split9  | test  | drop_robust_not_indicators         | 5           | None           | FastICA()    |   0.554    | nan        |
-| 17 | split9  | test  | drop_standard_robust               | None        | None           | FastICA()    | nan        |   0.557055 |
-| 18 | split9  | test  | ordinal_std_quantile_power_kbins_q | None        | 8              | FastICA()    | nan        |   0.544303 |
-| 19 | split9  | train | drop_max_abs_not_indicators        | None        | -              | passthrough  |   0.640221 | nan        |
-| 20 | split9  | train | drop_robust_not_indicators         | None        | None           | FastICA()    | nan        |   0.721812 |
-| 21 | split9  | train | ordinal_std_quantile_power_kbins_q | None        | None           | FastICA()    |   0.652684 |   0.728109 |
+|    | split   | set   | transformer                        | n_components   | reduce_dim   | max_depth   |   accuracy |    roc_auc |
+|---:|:--------|:------|:-----------------------------------|:---------------|:-------------|:------------|-----------:|-----------:|
+|  0 | split2  | test  | ordinal_quantile_power             | 5              | FastICA()    | 5           |   0.625    | nan        |
+|  1 | split2  | test  | target_max_abs_not_indicators      | 8              | FastICA()    | 5           |   0.623    | nan        |
+|  2 | split5  | test  | target_robust_not_indicators       | None           | FastICA()    | 5           |   0.561    | nan        |
+|  3 | split6  | test  | drop_quantile_power_kbins_u        | 8              | FastICA()    | None        |   0.561    | nan        |
+|  4 | split5  | test  | target_standard_robust             | None           | FastICA()    | 5           |   0.56     | nan        |
+|  5 | split2  | test  | target_quantile_power_kbins_q      | 5              | FastICA()    | None        | nan        |   0.571879 |
+|  6 | split5  | test  | ordinal_no_transform_digit_cols    | 5              | FastICA()    | 5           | nan        |   0.569402 |
+|  7 | split10 | test  | drop_std_quantile_power_kbins_u    | 8              | FastICA()    | 5           | nan        |   0.568561 |
+|  8 | split5  | test  | ordinal_quantile_power             | None           | FastICA()    | 5           | nan        |   0.566482 |
+|  9 | split1  | test  | target_quantile_power              | 8              | FastICA()    | None        | nan        |   0.562149 |
+| 10 | split7  | test  | drop_no_transform_digit_cols       | 2              | FastICA()    | 5           | nan        |   0.537153 |
+| 11 | split7  | test  | drop_no_transform_digit_cols       | None           | FastICA()    | None        |   0.532    |   0.539103 |
+| 12 | split7  | test  | drop_quantile_power_kbins_u        | None           | FastICA()    | None        |   0.531    | nan        |
+| 13 | split7  | train | drop_standard                      | None           | FastICA()    | None        |   0.645331 |   0.732648 |
+| 14 | split7  | train | target_quantile_power              | -              | passthrough  | None        |   0.653051 |   0.732806 |
+| 15 | split9  | test  | drop_robust_not_indicators         | 5              | FastICA()    | 5           |   0.556    | nan        |
+| 16 | split9  | test  | drop_robust_not_indicators         | None           | FastICA()    | 5           |   0.554    | nan        |
+| 17 | split9  | test  | drop_standard_robust               | None           | FastICA()    | None        | nan        |   0.557055 |
+| 18 | split9  | test  | ordinal_std_quantile_power_kbins_q | 8              | FastICA()    | None        | nan        |   0.544303 |
+| 19 | split9  | train | drop_max_abs_not_indicators        | -              | passthrough  | None        |   0.640221 | nan        |
+| 20 | split9  | train | drop_robust_not_indicators         | None           | FastICA()    | None        | nan        |   0.721812 |
+| 21 | split9  | train | ordinal_std_quantile_power_kbins_q | None           | FastICA()    | None        |   0.652684 |   0.728109 |
 ## CV 25 folds, 11 days validation
 
 ### logisticregression
-|    | split   | set   |   train_length |   C |   n_components | solver   | transformer                              | reduce_dim   |   accuracy |    roc_auc |
-|---:|:--------|:------|---------------:|----:|---------------:|:---------|:-----------------------------------------|:-------------|-----------:|-----------:|
-|  0 | split11 | test  |          27200 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u       | FastICA()    |   0.643182 | nan        |
-|  1 | split11 | test  |          27200 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u20     | FastICA()    |   0.643182 | nan        |
-|  2 | split5  | test  |          23680 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u           | FastICA()    |   0.638636 | nan        |
-|  3 | split5  | test  |          23680 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u       | FastICA()    |   0.636364 | nan        |
-|  4 | split13 | test  |          23680 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u       | FastICA()    |   0.611364 | nan        |
-|  5 | split13 | test  |          23680 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u20     | FastICA()    |   0.611364 | nan        |
-|  6 | split9  | test  |          20160 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u_scl       | FastICA()    | nan        |   0.56453  |
-|  7 | split9  | test  |          20160 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u20         | FastICA()    | nan        |   0.564117 |
-|  8 | split13 | test  |          27200 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u20     | FastICA()    | nan        |   0.56373  |
-|  9 | split13 | test  |          27200 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u20_scl     | FastICA()    | nan        |   0.563512 |
-| 10 | split2  | test  |          20160 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u20         | FastICA()    | nan        |   0.556128 |
-| 11 | split7  | test  |          20160 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u           | FastICA()    |   0.520455 | nan        |
-| 12 | split7  | test  |          20160 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u_scl       | FastICA()    |   0.520455 | nan        |
-| 13 | split7  | test  |          23680 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u20     | FastICA()    | nan        |   0.527881 |
-| 14 | split7  | test  |          23680 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u20_scl | FastICA()    | nan        |   0.527633 |
-| 15 | split7  | train |          20160 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u20_scl     | FastICA()    | nan        |   0.510264 |
-| 16 | split7  | train |          20160 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u20_scl | FastICA()    |   0.520662 | nan        |
-| 17 | split7  | train |          27200 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u20         | FastICA()    | nan        |   0.510318 |
-| 18 | split7  | train |          27200 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u       | FastICA()    |   0.520662 | nan        |
-| 19 | split9  | test  |          20160 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u20         | FastICA()    | nan        |   0.564117 |
-| 20 | split9  | test  |          20160 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u_scl       | FastICA()    | nan        |   0.56453  |
-| 21 | split9  | test  |          23680 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u           | FastICA()    |   0.495455 | nan        |
-| 22 | split9  | test  |          23680 | 1.5 |              2 | saga     | ordinal_std_quantile_power_kbins_u       | FastICA()    |   0.495455 | nan        |
-| 23 | split9  | train |          27200 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u           | FastICA()    | nan        |   0.510783 |
-| 24 | split9  | train |          27200 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u20         | FastICA()    |   0.520257 | nan        |
-| 25 | split9  | train |          27200 | 1.5 |              2 | saga     | ordinal_quantile_power_kbins_u20_scl     | FastICA()    |   0.520221 |   0.510778 |
+|    | split   | set   | reduce_dim   |   C | solver   |   train_length | transformer                              |   n_components |   accuracy |    roc_auc |
+|---:|:--------|:------|:-------------|----:|:---------|---------------:|:-----------------------------------------|---------------:|-----------:|-----------:|
+|  0 | split11 | test  | FastICA()    | 1.5 | saga     |          27200 | ordinal_std_quantile_power_kbins_u       |              2 |   0.643182 | nan        |
+|  1 | split11 | test  | FastICA()    | 1.5 | saga     |          27200 | ordinal_std_quantile_power_kbins_u20     |              2 |   0.643182 | nan        |
+|  2 | split5  | test  | FastICA()    | 1.5 | saga     |          23680 | ordinal_quantile_power_kbins_u           |              2 |   0.638636 | nan        |
+|  3 | split5  | test  | FastICA()    | 1.5 | saga     |          23680 | ordinal_std_quantile_power_kbins_u       |              2 |   0.636364 | nan        |
+|  4 | split13 | test  | FastICA()    | 1.5 | saga     |          23680 | ordinal_std_quantile_power_kbins_u       |              2 |   0.611364 | nan        |
+|  5 | split13 | test  | FastICA()    | 1.5 | saga     |          23680 | ordinal_std_quantile_power_kbins_u20     |              2 |   0.611364 | nan        |
+|  6 | split9  | test  | FastICA()    | 1.5 | saga     |          20160 | ordinal_quantile_power_kbins_u_scl       |              2 | nan        |   0.56453  |
+|  7 | split9  | test  | FastICA()    | 1.5 | saga     |          20160 | ordinal_quantile_power_kbins_u20         |              2 | nan        |   0.564117 |
+|  8 | split13 | test  | FastICA()    | 1.5 | saga     |          27200 | ordinal_std_quantile_power_kbins_u20     |              2 | nan        |   0.56373  |
+|  9 | split13 | test  | FastICA()    | 1.5 | saga     |          27200 | ordinal_quantile_power_kbins_u20_scl     |              2 | nan        |   0.563512 |
+| 10 | split2  | test  | FastICA()    | 1.5 | saga     |          20160 | ordinal_quantile_power_kbins_u20         |              2 | nan        |   0.556128 |
+| 11 | split7  | test  | FastICA()    | 1.5 | saga     |          20160 | ordinal_quantile_power_kbins_u           |              2 |   0.520455 | nan        |
+| 12 | split7  | test  | FastICA()    | 1.5 | saga     |          20160 | ordinal_quantile_power_kbins_u_scl       |              2 |   0.520455 | nan        |
+| 13 | split7  | test  | FastICA()    | 1.5 | saga     |          23680 | ordinal_std_quantile_power_kbins_u20     |              2 | nan        |   0.527881 |
+| 14 | split7  | test  | FastICA()    | 1.5 | saga     |          23680 | ordinal_std_quantile_power_kbins_u20_scl |              2 | nan        |   0.527633 |
+| 15 | split7  | train | FastICA()    | 1.5 | saga     |          20160 | ordinal_quantile_power_kbins_u20_scl     |              2 | nan        |   0.510264 |
+| 16 | split7  | train | FastICA()    | 1.5 | saga     |          20160 | ordinal_std_quantile_power_kbins_u20_scl |              2 |   0.520662 | nan        |
+| 17 | split7  | train | FastICA()    | 1.5 | saga     |          27200 | ordinal_quantile_power_kbins_u20         |              2 | nan        |   0.510318 |
+| 18 | split7  | train | FastICA()    | 1.5 | saga     |          27200 | ordinal_std_quantile_power_kbins_u       |              2 |   0.520662 | nan        |
+| 19 | split9  | test  | FastICA()    | 1.5 | saga     |          20160 | ordinal_quantile_power_kbins_u20         |              2 | nan        |   0.564117 |
+| 20 | split9  | test  | FastICA()    | 1.5 | saga     |          20160 | ordinal_quantile_power_kbins_u_scl       |              2 | nan        |   0.56453  |
+| 21 | split9  | test  | FastICA()    | 1.5 | saga     |          23680 | ordinal_quantile_power_kbins_u           |              2 |   0.495455 | nan        |
+| 22 | split9  | test  | FastICA()    | 1.5 | saga     |          23680 | ordinal_std_quantile_power_kbins_u       |              2 |   0.495455 | nan        |
+| 23 | split9  | train | FastICA()    | 1.5 | saga     |          27200 | ordinal_quantile_power_kbins_u           |              2 | nan        |   0.510783 |
+| 24 | split9  | train | FastICA()    | 1.5 | saga     |          27200 | ordinal_quantile_power_kbins_u20         |              2 |   0.520257 | nan        |
+| 25 | split9  | train | FastICA()    | 1.5 | saga     |          27200 | ordinal_quantile_power_kbins_u20_scl     |              2 |   0.520221 |   0.510778 |
 
 ### gaussiannb
-|    | split   | set   |   n_components | transformer     |   var_smoothing | reduce_dim   |   train_length |   accuracy |    roc_auc |
-|---:|:--------|:------|---------------:|:----------------|----------------:|:-------------|---------------:|-----------:|-----------:|
-|  0 | split11 | test  |              2 | target_standard |           1e-06 | FastICA()    |          20160 |   0.606818 | nan        |
-|  1 | split11 | test  |              2 | target_standard |           1e-11 | FastICA()    |          20160 |   0.606818 | nan        |
-|  2 | split13 | test  |              2 | target_standard |           1e-06 | FastICA()    |          23680 |   0.604545 | nan        |
-|  3 | split13 | test  |              2 | target_standard |           1e-11 | FastICA()    |          23680 |   0.602273 | nan        |
-|  4 | split21 | test  |              2 | target_standard |           1e-06 | FastICA()    |          27200 |   0.590909 | nan        |
-|  5 | split21 | test  |              2 | target_standard |           1e-11 | FastICA()    |          27200 |   0.590909 | nan        |
-|  6 | split9  | test  |              2 | target_standard |           1e-11 | FastICA()    |          27200 | nan        |   0.575585 |
-|  7 | split9  | test  |              2 | target_standard |           1e-06 | FastICA()    |          27200 | nan        |   0.575502 |
-|  8 | split13 | test  |              2 | target_standard |           1e-11 | FastICA()    |          20160 | nan        |   0.562295 |
-|  9 | split13 | test  |              2 | target_standard |           1e-06 | FastICA()    |          20160 | nan        |   0.562251 |
-| 10 | split8  | test  |              2 | target_standard |           1e-06 | FastICA()    |          20160 | nan        |   0.549685 |
-| 11 | split7  | test  |              2 | target_standard |           1e-06 | FastICA()    |          27200 | nan        |   0.512959 |
-| 12 | split7  | test  |              2 | target_standard |           1e-11 | FastICA()    |          20160 |   0.515909 | nan        |
-| 13 | split7  | test  |              2 | target_standard |           1e-11 | FastICA()    |          23680 |   0.515909 | nan        |
-| 14 | split7  | test  |              2 | target_standard |           1e-11 | FastICA()    |          27200 | nan        |   0.512938 |
-| 15 | split7  | train |              2 | target_standard |           1e-06 | FastICA()    |          23680 |   0.520882 | nan        |
-| 16 | split7  | train |              2 | target_standard |           1e-06 | FastICA()    |          27200 | nan        |   0.508692 |
-| 17 | split7  | train |              2 | target_standard |           1e-11 | FastICA()    |          23680 |   0.520846 | nan        |
-| 18 | split7  | train |              2 | target_standard |           1e-11 | FastICA()    |          27200 | nan        |   0.508691 |
-| 19 | split9  | test  |              2 | target_standard |           1e-06 | FastICA()    |          23680 |   0.531818 | nan        |
-| 20 | split9  | test  |              2 | target_standard |           1e-06 | FastICA()    |          27200 | nan        |   0.575502 |
-| 21 | split9  | test  |              2 | target_standard |           1e-11 | FastICA()    |          23680 |   0.531818 | nan        |
-| 22 | split9  | test  |              2 | target_standard |           1e-11 | FastICA()    |          27200 | nan        |   0.575585 |
-| 23 | split9  | train |              2 | target_standard |           1e-06 | FastICA()    |          23680 |   0.520368 | nan        |
-| 24 | split9  | train |              2 | target_standard |           1e-06 | FastICA()    |          27200 | nan        |   0.509815 |
-| 25 | split9  | train |              2 | target_standard |           1e-11 | FastICA()    |          23680 |   0.520368 | nan        |
-| 26 | split9  | train |              2 | target_standard |           1e-11 | FastICA()    |          27200 | nan        |   0.509818 |
+|    | split   | set   | reduce_dim   |   var_smoothing | transformer     |   train_length |   n_components |   accuracy |    roc_auc |
+|---:|:--------|:------|:-------------|----------------:|:----------------|---------------:|---------------:|-----------:|-----------:|
+|  0 | split11 | test  | FastICA()    |           1e-06 | target_standard |          20160 |              2 |   0.606818 | nan        |
+|  1 | split11 | test  | FastICA()    |           1e-11 | target_standard |          20160 |              2 |   0.606818 | nan        |
+|  2 | split13 | test  | FastICA()    |           1e-06 | target_standard |          23680 |              2 |   0.604545 | nan        |
+|  3 | split13 | test  | FastICA()    |           1e-11 | target_standard |          23680 |              2 |   0.602273 | nan        |
+|  4 | split21 | test  | FastICA()    |           1e-06 | target_standard |          27200 |              2 |   0.590909 | nan        |
+|  5 | split21 | test  | FastICA()    |           1e-11 | target_standard |          27200 |              2 |   0.590909 | nan        |
+|  6 | split9  | test  | FastICA()    |           1e-11 | target_standard |          27200 |              2 | nan        |   0.575585 |
+|  7 | split9  | test  | FastICA()    |           1e-06 | target_standard |          27200 |              2 | nan        |   0.575502 |
+|  8 | split13 | test  | FastICA()    |           1e-11 | target_standard |          20160 |              2 | nan        |   0.562295 |
+|  9 | split13 | test  | FastICA()    |           1e-06 | target_standard |          20160 |              2 | nan        |   0.562251 |
+| 10 | split8  | test  | FastICA()    |           1e-06 | target_standard |          20160 |              2 | nan        |   0.549685 |
+| 11 | split7  | test  | FastICA()    |           1e-06 | target_standard |          27200 |              2 | nan        |   0.512959 |
+| 12 | split7  | test  | FastICA()    |           1e-11 | target_standard |          20160 |              2 |   0.515909 | nan        |
+| 13 | split7  | test  | FastICA()    |           1e-11 | target_standard |          23680 |              2 |   0.515909 | nan        |
+| 14 | split7  | test  | FastICA()    |           1e-11 | target_standard |          27200 |              2 | nan        |   0.512938 |
+| 15 | split7  | train | FastICA()    |           1e-06 | target_standard |          23680 |              2 |   0.520882 | nan        |
+| 16 | split7  | train | FastICA()    |           1e-06 | target_standard |          27200 |              2 | nan        |   0.508692 |
+| 17 | split7  | train | FastICA()    |           1e-11 | target_standard |          23680 |              2 |   0.520846 | nan        |
+| 18 | split7  | train | FastICA()    |           1e-11 | target_standard |          27200 |              2 | nan        |   0.508691 |
+| 19 | split9  | test  | FastICA()    |           1e-06 | target_standard |          23680 |              2 |   0.531818 | nan        |
+| 20 | split9  | test  | FastICA()    |           1e-06 | target_standard |          27200 |              2 | nan        |   0.575502 |
+| 21 | split9  | test  | FastICA()    |           1e-11 | target_standard |          23680 |              2 |   0.531818 | nan        |
+| 22 | split9  | test  | FastICA()    |           1e-11 | target_standard |          27200 |              2 | nan        |   0.575585 |
+| 23 | split9  | train | FastICA()    |           1e-06 | target_standard |          23680 |              2 |   0.520368 | nan        |
+| 24 | split9  | train | FastICA()    |           1e-06 | target_standard |          27200 |              2 | nan        |   0.509815 |
+| 25 | split9  | train | FastICA()    |           1e-11 | target_standard |          23680 |              2 |   0.520368 | nan        |
+| 26 | split9  | train | FastICA()    |           1e-11 | target_standard |          27200 |              2 | nan        |   0.509818 |
 
 ### randomforestclassifier
-|    | split   | set   |   max_depth |   train_length |   n_components |   n_estimators | transformer                              | reduce_dim   |   accuracy |    roc_auc |
-|---:|:--------|:------|------------:|---------------:|---------------:|---------------:|:-----------------------------------------|:-------------|-----------:|-----------:|
-|  0 | split5  | test  |           2 |          20160 |              2 |            100 | ordinal_std_quantile_power_kbins_q_scl   | FastICA()    |   0.659091 | nan        |
-|  1 | split5  | test  |           2 |          20160 |              2 |            100 | ordinal_std_quantile_power_kbins_q20     | FastICA()    |   0.656818 | nan        |
-|  2 | split11 | test  |           2 |          20160 |              2 |             50 | ordinal_std_quantile_power_kbins_q_scl   | FastICA()    |   0.65     | nan        |
-|  3 | split11 | test  |           2 |          27200 |              2 |            100 | ordinal_std_quantile_power_kbins_q_scl   | FastICA()    |   0.65     | nan        |
-|  4 | split13 | test  |           2 |          20160 |              2 |            100 | ordinal_std_quantile_power_kbins_q       | FastICA()    |   0.618182 | nan        |
-|  5 | split13 | test  |           2 |          20160 |              2 |             50 | ordinal_quantile_power_kbins_q_scl       | FastICA()    | nan        |   0.573273 |
-|  6 | split4  | test  |           2 |          27200 |              2 |            100 | ordinal_std_quantile_power_kbins_q20_scl | FastICA()    | nan        |   0.564455 |
-|  7 | split13 | test  |           2 |          20160 |              2 |             50 | ordinal_std_quantile_power_kbins_q_scl   | FastICA()    | nan        |   0.564327 |
-|  8 | split9  | test  |           2 |          27200 |              2 |            100 | ordinal_std_quantile_power_kbins_q       | FastICA()    | nan        |   0.563693 |
-|  9 | split4  | test  |           2 |          27200 |              2 |            100 | ordinal_quantile_power_kbins_q20         | FastICA()    | nan        |   0.562972 |
-| 10 | split7  | test  |           2 |          20160 |              2 |            100 | ordinal_quantile_power_kbins_q20         | FastICA()    | nan        |   0.541522 |
-| 11 | split7  | test  |           2 |          20160 |              2 |             50 | ordinal_quantile_power_kbins_q           | FastICA()    | nan        |   0.533709 |
-| 12 | split7  | test  |           2 |          20160 |              2 |             50 | ordinal_std_quantile_power_kbins_q20_scl | FastICA()    |   0.511364 | nan        |
-| 13 | split7  | test  |           2 |          23680 |              2 |             50 | ordinal_quantile_power_kbins_q20         | FastICA()    |   0.513636 | nan        |
-| 14 | split7  | train |           2 |          20160 |              2 |             50 | ordinal_quantile_power_kbins_q           | FastICA()    |   0.522169 | nan        |
-| 15 | split7  | train |           2 |          20160 |              2 |             50 | ordinal_std_quantile_power_kbins_q_scl   | FastICA()    |   0.522316 | nan        |
-| 16 | split7  | train |           2 |          23680 |              2 |            100 | ordinal_std_quantile_power_kbins_q       | FastICA()    | nan        |   0.527296 |
-| 17 | split7  | train |           2 |          27200 |              2 |            100 | ordinal_std_quantile_power_kbins_q_scl   | FastICA()    | nan        |   0.527426 |
-| 18 | split9  | test  |           2 |          20160 |              2 |             50 | ordinal_quantile_power_kbins_q20         | FastICA()    |   0.495455 | nan        |
-| 19 | split9  | test  |           2 |          27200 |              2 |            100 | ordinal_std_quantile_power_kbins_q       | FastICA()    | nan        |   0.563693 |
-| 20 | split9  | test  |           2 |          27200 |              2 |             50 | ordinal_quantile_power_kbins_q20         | FastICA()    |   0.497727 | nan        |
-| 21 | split9  | test  |           2 |          27200 |              2 |             50 | ordinal_std_quantile_power_kbins_q20_scl | FastICA()    | nan        |   0.560563 |
-| 22 | split9  | train |           2 |          20160 |              2 |            100 | ordinal_std_quantile_power_kbins_q_scl   | FastICA()    |   0.522022 | nan        |
-| 23 | split9  | train |           2 |          20160 |              2 |             50 | ordinal_std_quantile_power_kbins_q       | FastICA()    |   0.521801 | nan        |
-| 24 | split9  | train |           2 |          27200 |              2 |            100 | ordinal_quantile_power_kbins_q20_scl     | FastICA()    | nan        |   0.528983 |
-| 25 | split9  | train |           2 |          27200 |              2 |            100 | ordinal_std_quantile_power_kbins_q       | FastICA()    | nan        |   0.527667 |
+|    | split   | set   |   train_length | reduce_dim   | transformer                              |   max_depth |   n_estimators |   n_components |   accuracy |    roc_auc |
+|---:|:--------|:------|---------------:|:-------------|:-----------------------------------------|------------:|---------------:|---------------:|-----------:|-----------:|
+|  0 | split5  | test  |          20160 | FastICA()    | ordinal_std_quantile_power_kbins_q_scl   |           2 |            100 |              2 |   0.659091 | nan        |
+|  1 | split5  | test  |          20160 | FastICA()    | ordinal_std_quantile_power_kbins_q20     |           2 |            100 |              2 |   0.656818 | nan        |
+|  2 | split11 | test  |          20160 | FastICA()    | ordinal_std_quantile_power_kbins_q_scl   |           2 |             50 |              2 |   0.65     | nan        |
+|  3 | split11 | test  |          27200 | FastICA()    | ordinal_std_quantile_power_kbins_q_scl   |           2 |            100 |              2 |   0.65     | nan        |
+|  4 | split13 | test  |          20160 | FastICA()    | ordinal_std_quantile_power_kbins_q       |           2 |            100 |              2 |   0.618182 | nan        |
+|  5 | split13 | test  |          20160 | FastICA()    | ordinal_quantile_power_kbins_q_scl       |           2 |             50 |              2 | nan        |   0.573273 |
+|  6 | split4  | test  |          27200 | FastICA()    | ordinal_std_quantile_power_kbins_q20_scl |           2 |            100 |              2 | nan        |   0.564455 |
+|  7 | split13 | test  |          20160 | FastICA()    | ordinal_std_quantile_power_kbins_q_scl   |           2 |             50 |              2 | nan        |   0.564327 |
+|  8 | split9  | test  |          27200 | FastICA()    | ordinal_std_quantile_power_kbins_q       |           2 |            100 |              2 | nan        |   0.563693 |
+|  9 | split4  | test  |          27200 | FastICA()    | ordinal_quantile_power_kbins_q20         |           2 |            100 |              2 | nan        |   0.562972 |
+| 10 | split7  | test  |          20160 | FastICA()    | ordinal_quantile_power_kbins_q           |           2 |             50 |              2 | nan        |   0.533709 |
+| 11 | split7  | test  |          20160 | FastICA()    | ordinal_quantile_power_kbins_q20         |           2 |            100 |              2 | nan        |   0.541522 |
+| 12 | split7  | test  |          20160 | FastICA()    | ordinal_std_quantile_power_kbins_q20_scl |           2 |             50 |              2 |   0.511364 | nan        |
+| 13 | split7  | test  |          23680 | FastICA()    | ordinal_quantile_power_kbins_q20         |           2 |             50 |              2 |   0.513636 | nan        |
+| 14 | split7  | train |          20160 | FastICA()    | ordinal_quantile_power_kbins_q           |           2 |             50 |              2 |   0.522169 | nan        |
+| 15 | split7  | train |          20160 | FastICA()    | ordinal_std_quantile_power_kbins_q_scl   |           2 |             50 |              2 |   0.522316 | nan        |
+| 16 | split7  | train |          23680 | FastICA()    | ordinal_std_quantile_power_kbins_q       |           2 |            100 |              2 | nan        |   0.527296 |
+| 17 | split7  | train |          27200 | FastICA()    | ordinal_std_quantile_power_kbins_q_scl   |           2 |            100 |              2 | nan        |   0.527426 |
+| 18 | split9  | test  |          20160 | FastICA()    | ordinal_quantile_power_kbins_q20         |           2 |             50 |              2 |   0.495455 | nan        |
+| 19 | split9  | test  |          27200 | FastICA()    | ordinal_quantile_power_kbins_q20         |           2 |             50 |              2 |   0.497727 | nan        |
+| 20 | split9  | test  |          27200 | FastICA()    | ordinal_std_quantile_power_kbins_q       |           2 |            100 |              2 | nan        |   0.563693 |
+| 21 | split9  | test  |          27200 | FastICA()    | ordinal_std_quantile_power_kbins_q20_scl |           2 |             50 |              2 | nan        |   0.560563 |
+| 22 | split9  | train |          20160 | FastICA()    | ordinal_std_quantile_power_kbins_q       |           2 |             50 |              2 |   0.521801 | nan        |
+| 23 | split9  | train |          20160 | FastICA()    | ordinal_std_quantile_power_kbins_q_scl   |           2 |            100 |              2 |   0.522022 | nan        |
+| 24 | split9  | train |          27200 | FastICA()    | ordinal_quantile_power_kbins_q20_scl     |           2 |            100 |              2 | nan        |   0.528983 |
+| 25 | split9  | train |          27200 | FastICA()    | ordinal_std_quantile_power_kbins_q       |           2 |            100 |              2 | nan        |   0.527667 |
 
 ### histgradientboostingclassifier
-|    | split   | set   | max_depth   |   train_length |   n_components | transformer                              | reduce_dim   |   accuracy |    roc_auc |
-|---:|:--------|:------|:------------|---------------:|---------------:|:-----------------------------------------|:-------------|-----------:|-----------:|
-|  0 | split11 | test  | None        |          27200 |              2 | ordinal_std_quantile_power_kbins_u20_scl | FastICA()    |   0.620455 | nan        |
-|  1 | split11 | test  | 10          |          23680 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    |   0.618182 | nan        |
-|  2 | split5  | test  | None        |          20160 |              2 | ordinal_std_quantile_power_kbins_u       | FastICA()    |   0.615909 | nan        |
-|  3 | split5  | test  | 10          |          20160 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    |   0.611364 | nan        |
-|  4 | split13 | test  | None        |          27200 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    |   0.602273 | nan        |
-|  5 | split1  | test  | None        |          27200 |              2 | ordinal_std_quantile_power_kbins_u       | FastICA()    | nan        |   0.57456  |
-|  6 | split4  | test  | None        |          23680 |              2 | ordinal_std_quantile_power_kbins_u_scl   | FastICA()    | nan        |   0.57127  |
-|  7 | split4  | test  | None        |          20160 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    | nan        |   0.571011 |
-|  8 | split24 | test  | 10          |          27200 |              2 | ordinal_std_quantile_power_kbins_u_scl   | FastICA()    | nan        |   0.57088  |
-|  9 | split9  | test  | None        |          20160 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    | nan        |   0.565615 |
-| 10 | split7  | test  | 10          |          23680 |              2 | ordinal_std_quantile_power_kbins_u_scl   | FastICA()    | nan        |   0.540664 |
-| 11 | split7  | test  | 10          |          27200 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    |   0.522727 |   0.547671 |
-| 12 | split7  | test  | None        |          27200 |              2 | ordinal_std_quantile_power_kbins_u       | FastICA()    |   0.538636 | nan        |
-| 13 | split7  | train | 10          |          27200 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    |   0.559007 |   0.591868 |
-| 14 | split7  | train | None        |          23680 |              2 | ordinal_std_quantile_power_kbins_u       | FastICA()    |   0.559191 |   0.594078 |
-| 15 | split9  | test  | 10          |          27200 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    |   0.525    | nan        |
-| 16 | split9  | test  | None        |          20160 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    | nan        |   0.565615 |
-| 17 | split9  | test  | None        |          27200 |              2 | ordinal_std_quantile_power_kbins_u_scl   | FastICA()    |   0.520455 |   0.548361 |
-| 18 | split9  | train | 10          |          27200 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    |   0.559926 |   0.594503 |
-| 19 | split9  | train | None        |          23680 |              2 | ordinal_std_quantile_power_kbins_u20     | FastICA()    | nan        |   0.586824 |
-| 20 | split9  | train | None        |          27200 |              2 | ordinal_std_quantile_power_kbins_u20_scl | FastICA()    |   0.556544 | nan        |
+|    | split   | set   | reduce_dim   |   train_length | max_depth   | transformer                              |   n_components |   accuracy |    roc_auc |
+|---:|:--------|:------|:-------------|---------------:|:------------|:-----------------------------------------|---------------:|-----------:|-----------:|
+|  0 | split11 | test  | FastICA()    |          27200 | None        | ordinal_std_quantile_power_kbins_u20_scl |              2 |   0.620455 | nan        |
+|  1 | split11 | test  | FastICA()    |          23680 | 10          | ordinal_std_quantile_power_kbins_u20     |              2 |   0.618182 | nan        |
+|  2 | split5  | test  | FastICA()    |          20160 | None        | ordinal_std_quantile_power_kbins_u       |              2 |   0.615909 | nan        |
+|  3 | split5  | test  | FastICA()    |          20160 | 10          | ordinal_std_quantile_power_kbins_u20     |              2 |   0.611364 | nan        |
+|  4 | split13 | test  | FastICA()    |          27200 | None        | ordinal_std_quantile_power_kbins_u20     |              2 |   0.602273 | nan        |
+|  5 | split1  | test  | FastICA()    |          27200 | None        | ordinal_std_quantile_power_kbins_u       |              2 | nan        |   0.57456  |
+|  6 | split4  | test  | FastICA()    |          23680 | None        | ordinal_std_quantile_power_kbins_u_scl   |              2 | nan        |   0.57127  |
+|  7 | split4  | test  | FastICA()    |          20160 | None        | ordinal_std_quantile_power_kbins_u20     |              2 | nan        |   0.571011 |
+|  8 | split24 | test  | FastICA()    |          27200 | 10          | ordinal_std_quantile_power_kbins_u_scl   |              2 | nan        |   0.57088  |
+|  9 | split9  | test  | FastICA()    |          20160 | None        | ordinal_std_quantile_power_kbins_u20     |              2 | nan        |   0.565615 |
+| 10 | split7  | test  | FastICA()    |          23680 | 10          | ordinal_std_quantile_power_kbins_u_scl   |              2 | nan        |   0.540664 |
+| 11 | split7  | test  | FastICA()    |          27200 | 10          | ordinal_std_quantile_power_kbins_u20     |              2 |   0.522727 |   0.547671 |
+| 12 | split7  | test  | FastICA()    |          27200 | None        | ordinal_std_quantile_power_kbins_u       |              2 |   0.538636 | nan        |
+| 13 | split7  | train | FastICA()    |          23680 | None        | ordinal_std_quantile_power_kbins_u       |              2 |   0.559191 |   0.594078 |
+| 14 | split7  | train | FastICA()    |          27200 | 10          | ordinal_std_quantile_power_kbins_u20     |              2 |   0.559007 |   0.591868 |
+| 15 | split9  | test  | FastICA()    |          20160 | None        | ordinal_std_quantile_power_kbins_u20     |              2 | nan        |   0.565615 |
+| 16 | split9  | test  | FastICA()    |          27200 | 10          | ordinal_std_quantile_power_kbins_u20     |              2 |   0.525    | nan        |
+| 17 | split9  | test  | FastICA()    |          27200 | None        | ordinal_std_quantile_power_kbins_u_scl   |              2 |   0.520455 |   0.548361 |
+| 18 | split9  | train | FastICA()    |          23680 | None        | ordinal_std_quantile_power_kbins_u20     |              2 | nan        |   0.586824 |
+| 19 | split9  | train | FastICA()    |          27200 | 10          | ordinal_std_quantile_power_kbins_u20     |              2 |   0.559926 |   0.594503 |
+| 20 | split9  | train | FastICA()    |          27200 | None        | ordinal_std_quantile_power_kbins_u20_scl |              2 |   0.556544 | nan        |
 ## Choose hyperparameters
 
 ### logisticregression
@@ -349,27 +349,27 @@
 ## Choose RandomForestClassifier's hyperparameters  after feature analysis
 
 ### randomforestclassifier
-|    | split   | set   |   max_depth | max_features   |   n_components |   min_samples_leaf |   n_estimators | transformer                   | reduce_dim   |   accuracy |    roc_auc |
-|---:|:--------|:------|------------:|:---------------|---------------:|-------------------:|---------------:|:------------------------------|:-------------|-----------:|-----------:|
-|  0 | split2  | test  |           3 | None           |              4 |                  3 |            200 | target_quantile_power_kbins_u | FastICA()    |   0.59     | nan        |
-|  1 | split2  | test  |           4 | None           |              4 |                  3 |            200 | target_quantile_power_kbins_u | FastICA()    |   0.581    | nan        |
-|  2 | split6  | test  |           3 | None           |              2 |                  3 |            200 | target_quantile_power_kbins_u | FastICA()    |   0.578    | nan        |
-|  3 | split6  | test  |           3 | None           |              2 |                  3 |            200 | target_quantile_power_kbins_u | PCA()        |   0.578    | nan        |
-|  4 | split3  | test  |           3 | None           |              2 |                  3 |            200 | ordinal_quantile_power        | PCA()        |   0.56     | nan        |
-|  5 | split5  | test  |           3 | None           |             20 |                  3 |            200 | target_robust_not_indicators  | PCA()        | nan        |   0.592474 |
-|  6 | split5  | test  |           5 | None           |             20 |                  3 |            200 | target_robust_not_indicators  | PCA()        | nan        |   0.590105 |
-|  7 | split0  | test  |           3 | None           |              4 |                  3 |            200 | target_robust_not_indicators  | FastICA()    | nan        |   0.572504 |
-|  8 | split0  | test  |           4 | None           |             10 |                  3 |            200 | ordinal_quantile_power        | PCA()        | nan        |   0.567341 |
-|  9 | split8  | test  |           5 | None           |              4 |                  3 |            200 | target_robust_not_indicators  | FastICA()    | nan        |   0.559772 |
-| 10 | split7  | test  |           3 | None           |              2 |                  3 |            200 | ordinal_quantile_power        | FastICA()    | nan        |   0.522041 |
-| 11 | split7  | test  |           3 | None           |             20 |                  3 |            200 | target_robust_not_indicators  | FastICA()    |   0.501    | nan        |
-| 12 | split7  | test  |           5 | None           |             10 |                  3 |            200 | ordinal_quantile_power        | FastICA()    |   0.503    | nan        |
-| 13 | split7  | test  |           5 | None           |              2 |                  3 |            200 | ordinal_quantile_power        | FastICA()    | nan        |   0.530325 |
-| 14 | split7  | train |           5 | None           |             20 |                  3 |            200 | ordinal_quantile_power        | PCA()        |   0.58776  |   0.662294 |
-| 15 | split7  | train |           5 | None           |             20 |                  3 |            200 | target_quantile_power_kbins_u | FastICA()    |   0.589273 |   0.669671 |
-| 16 | split9  | test  |           3 | None           |              4 |                  3 |            200 | target_quantile_power_kbins_u | PCA()        |   0.542    | nan        |
-| 17 | split9  | test  |           4 | None           |             10 |                  3 |            200 | target_quantile_power_kbins_u | FastICA()    | nan        |   0.510986 |
-| 18 | split9  | test  |           4 | None           |             20 |                  3 |            200 | target_quantile_power_kbins_u | FastICA()    |   0.537    | nan        |
-| 19 | split9  | test  |           5 | None           |             20 |                  3 |            200 | target_quantile_power_kbins_u | PCA()        | nan        |   0.518322 |
-| 20 | split9  | train |           5 | None           |             20 |                  3 |            200 | ordinal_quantile_power        | FastICA()    |   0.592215 |   0.648939 |
-| 21 | split9  | train |           5 | None           |             20 |                  3 |            200 | target_quantile_power_kbins_u | FastICA()    |   0.595415 |   0.662985 |
+|    | split   | set   |   min_samples_leaf | reduce_dim   | transformer                   |   max_depth | max_features   |   n_estimators |   n_components |   accuracy |    roc_auc |
+|---:|:--------|:------|-------------------:|:-------------|:------------------------------|------------:|:---------------|---------------:|---------------:|-----------:|-----------:|
+|  0 | split2  | test  |                  3 | FastICA()    | target_quantile_power_kbins_u |           3 | None           |            200 |              4 |   0.59     | nan        |
+|  1 | split2  | test  |                  3 | FastICA()    | target_quantile_power_kbins_u |           4 | None           |            200 |              4 |   0.581    | nan        |
+|  2 | split6  | test  |                  3 | FastICA()    | target_quantile_power_kbins_u |           3 | None           |            200 |              2 |   0.578    | nan        |
+|  3 | split6  | test  |                  3 | PCA()        | target_quantile_power_kbins_u |           3 | None           |            200 |              2 |   0.578    | nan        |
+|  4 | split3  | test  |                  3 | PCA()        | ordinal_quantile_power        |           3 | None           |            200 |              2 |   0.56     | nan        |
+|  5 | split5  | test  |                  3 | PCA()        | target_robust_not_indicators  |           3 | None           |            200 |             20 | nan        |   0.592474 |
+|  6 | split5  | test  |                  3 | PCA()        | target_robust_not_indicators  |           5 | None           |            200 |             20 | nan        |   0.590105 |
+|  7 | split0  | test  |                  3 | FastICA()    | target_robust_not_indicators  |           3 | None           |            200 |              4 | nan        |   0.572504 |
+|  8 | split0  | test  |                  3 | PCA()        | ordinal_quantile_power        |           4 | None           |            200 |             10 | nan        |   0.567341 |
+|  9 | split8  | test  |                  3 | FastICA()    | target_robust_not_indicators  |           5 | None           |            200 |              4 | nan        |   0.559772 |
+| 10 | split7  | test  |                  3 | FastICA()    | ordinal_quantile_power        |           3 | None           |            200 |              2 | nan        |   0.522041 |
+| 11 | split7  | test  |                  3 | FastICA()    | ordinal_quantile_power        |           5 | None           |            200 |             10 |   0.503    | nan        |
+| 12 | split7  | test  |                  3 | FastICA()    | ordinal_quantile_power        |           5 | None           |            200 |              2 | nan        |   0.530325 |
+| 13 | split7  | test  |                  3 | FastICA()    | target_robust_not_indicators  |           3 | None           |            200 |             20 |   0.501    | nan        |
+| 14 | split7  | train |                  3 | FastICA()    | target_quantile_power_kbins_u |           5 | None           |            200 |             20 |   0.589273 |   0.669671 |
+| 15 | split7  | train |                  3 | PCA()        | ordinal_quantile_power        |           5 | None           |            200 |             20 |   0.58776  |   0.662294 |
+| 16 | split9  | test  |                  3 | FastICA()    | target_quantile_power_kbins_u |           4 | None           |            200 |             10 | nan        |   0.510986 |
+| 17 | split9  | test  |                  3 | FastICA()    | target_quantile_power_kbins_u |           4 | None           |            200 |             20 |   0.537    | nan        |
+| 18 | split9  | test  |                  3 | PCA()        | target_quantile_power_kbins_u |           3 | None           |            200 |              4 |   0.542    | nan        |
+| 19 | split9  | test  |                  3 | PCA()        | target_quantile_power_kbins_u |           5 | None           |            200 |             20 | nan        |   0.518322 |
+| 20 | split9  | train |                  3 | FastICA()    | ordinal_quantile_power        |           5 | None           |            200 |             20 |   0.592215 |   0.648939 |
+| 21 | split9  | train |                  3 | FastICA()    | target_quantile_power_kbins_u |           5 | None           |            200 |             20 |   0.595415 |   0.662985 |

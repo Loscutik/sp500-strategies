@@ -13,6 +13,13 @@ import pandas as pd
 from helpers import is_iterable
 
 
+def get_fig_and_axes(ncols, n_axes, row_high=4, fig_width=12):
+    nrows = math.ceil(n_axes / ncols)
+    fig, axs = plt.subplots(nrows, ncols, figsize=(fig_width, nrows * row_high))
+    axs = axs.flatten()
+    return fig, axs
+
+
 def plot_small_term_orgs(small_term_orgs, bar_colors, max_term):
     fig, ax = plt.subplots(figsize=[15,5])
     rect_tr = ax.bar(small_term_orgs.index, small_term_orgs['n_days'], width=0.5, color=bar_colors)
@@ -104,6 +111,7 @@ def plot_outliers_Volume_to_pdf(companies_to_plot, z_scores_set, outliers_file_n
         # Closing the figure prevents it from being displayed directly inside the notebook.
             if (org not in []): #['HSY','O','PVH']
                 plt.close(fig)
+
 
 def set_indexed_ax(ax, nrows, ncols, idx):
     if nrows == 1 and ncols == 1:
@@ -226,7 +234,7 @@ def plot_cv(cv, title, X, y=None, scale_x=10, lw=10, figsize=([6.4, 4.8])):
     return fig
 
 
-def lineplot(data, x, y='roc_auc', title=None, style='set', hue='Model name', figsize=(10, 6), rotation_ticks=False):
+def lineplot(data, x, y='roc_auc', title=None, style='set', hue='Model name', figsize=(10, 6), rotation_ticks=False, **kwargs):
 
     plt.figure(figsize=figsize)
     if title is None:
@@ -234,10 +242,11 @@ def lineplot(data, x, y='roc_auc', title=None, style='set', hue='Model name', fi
     plt.title(title)
     if rotation_ticks:
         plt.xticks(rotation=90)
-    snsplot = sns.lineplot(data=data, x=x, y=y, style=style, hue=hue, markers=True, dashes=True, legend='brief')
+    snsplot = sns.lineplot(data=data, x=x, y=y, style=style, hue=hue, markers=True, dashes=True, legend='brief', **kwargs)
     plt.legend(loc='center left', bbox_to_anchor=(1, 0.5), title=x)
     plt.close()
     return snsplot
+
 
 def barplot(data, x, y='roc_auc', title=None, hue='set', figsize=(10, 6), rotation_ticks=False):
 
@@ -285,6 +294,7 @@ def plot_vs_features(data, fetures_x, fetures_y, ncols=2, figsize=(12, 6)):
     plt.tight_layout()
     plt.close()
     return fig
+
 
 def plot_boxplot_before_after_capping_outliers(x_before, x_after, figsize=(15, 7), yscale=None):
     import seaborn as sns

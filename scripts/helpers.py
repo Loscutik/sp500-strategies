@@ -1,10 +1,14 @@
 from collections import defaultdict
 from collections.abc import Iterable
 from functools import wraps
-import numpy as np
-import pandas as pd
 import time
-from typing import Any
+from typing import Callable, Any
+
+from consts import format
+from input_output_plot.printing import output_formatting as paint
+
+# import numpy as np
+import pandas as pd
 
 
 def is_iterable(obj: Any) -> bool: 
@@ -159,6 +163,17 @@ class ProgressdownDecorator:
             print(f'{self.callback(*args, **kwargs)}', end=self.end_string)
 
 
+def get_na_in_columns(df: pd.DataFrame, cols: list) -> pd.DataFrame:
+    """
+    Get all NaN values in columns.
+    :param df: pandas DataFrame
+    :param cols: Sequence of string, column names to search for NaN values
+    :return: dataframe with rows from `df` which contains NaN values at least in one of `cols`
+    """
+    mask = df[cols].isna()
+    return df[mask.any(axis=1)]
+
+
 def find_first_diff(set1, set2):
     """
     Find the first differing element between two sequences.
@@ -189,7 +204,23 @@ def flatten_list_of_dicts(dicts):
         return flatten_param_grid
     
 
-from typing import Callable, Any
+def extract_capitals_with_following(s, n=3):
+    result = []
+    capitals =[]
+    i = 0
+    while i < len(s):
+        if s[i].isupper():
+            capitals.append(i)
+        i += 1
+    if len(capitals) == 0:
+        return s
+    capitals.append(len(s))
+    for idx in range(len(capitals)-1):
+        left=capitals[idx]
+        right=min(left+n, capitals[idx+1])
+        result.append(s[left:right])
+    return ''.join(result)
+
 def load_or_run(
     process: Callable[..., Any],
     file_path: str,
@@ -197,17 +228,20 @@ def load_or_run(
     verbose: bool = True,
     **kwargs
 ) -> Any:
+    
+    from os.path import exists as path_exists
+    from pickle import load as pkl_load, dump as pkl_dump
     def log(message: str):
         if verbose:
             print(message)
 
-    if os.path.exists(file_path):
+    if path_exists(file_path):
         log(f'Loading results from {paint(file_path, format)}')
         with open(file_path, 'rb') as f:
-            return pickle.load(f)
+            return pkl_load(f)
     else:
         log(f'Running {process.__name__} and saving results to {paint(file_path, format)}')
         result = process(*args, **kwargs)
         with open(file_path, 'wb') as f:
-            pickle.dump(result, f)
+            pkl_dump(result, f)
         return result
