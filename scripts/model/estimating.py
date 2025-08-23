@@ -1,4 +1,3 @@
-import pandas as pd
 
 class WrapModelTrainSizeParam:
     """
@@ -162,34 +161,3 @@ def run_classifier_grid_search(estimator, Xtrain, ytrain, Xtest=None, ytest=None
     
     return res
 
-
-def select_best_grid_search_estimator(xs, ys, estimators, cv=None, scoring='accuracy'):
-    """
-    Perform grid search on a list of estimators and select the best one based on the given scoring metric.
-    Parameters:
-    xs (array-like or sparse matrix): The input data to fit.
-    ys (array-like): The target variable to try to predict in the case of supervised learning.
-    estimators (list of dict): A list of dictionaries where each dictionary contains:
-        - 'name' (str): The name of the estimator.
-        - 'estimator' (estimator object): The estimator object to be used.
-        - 'params' (dict): The parameter grid to search over.
-    cv (int, cross-validation generator or an iterable, optional): Determines the cross-validation splitting strategy. Default is None.
-    scoring (str, callable, list/tuple, or dict, optional): A string or a scorer callable object / function with signature scorer(estimator, X, y). Default is 'accuracy'.
-    Returns:
-    list of dict: The input list of estimators with additional keys:
-        - 'best' (estimator object): The best estimator found by grid search.
-        - 'best_params' (dict): The best parameters found by grid search.
-    """
-    for estimator in estimators:
-        print("\n>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ")
-        print("\n=== grid searching that one  ===\n", estimator['name'],"\n  parametrs:\n  ", estimator['params'])
-        grid_searched = grid_search_estimator(xs, ys, estimator['estimator'], estimator['params'], cv=cv, scoring = scoring)
-        print("\n=== finsihed with === ")
-        print("\n  Score : ", grid_searched.best_score_)
-        print("\n  Params : \n", grid_searched.best_params_)
-        print("\n<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ")
-        
-        estimator["best"] = grid_searched.best_estimator_
-        estimator["best_params"] = grid_searched.best_params_
-            
-    return estimators

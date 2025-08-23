@@ -205,6 +205,17 @@ def flatten_list_of_dicts(dicts):
     
 
 def extract_capitals_with_following(s, n=3):
+    """
+    Extracts substrings from the input string `s` starting at each uppercase letter and including up to `n` characters
+    or until the next uppercase letter is encountered.
+
+    Args:
+        s (str): The input string to process.
+        n (int, optional): The number of characters to include after each uppercase letter. Defaults to 3.
+
+    Returns:
+        str: A concatenated string of the extracted substrings. If no uppercase letters are found, returns the original string.
+    """
     result = []
     capitals =[]
     i = 0
@@ -220,6 +231,7 @@ def extract_capitals_with_following(s, n=3):
         right=min(left+n, capitals[idx+1])
         result.append(s[left:right])
     return ''.join(result)
+
 
 def load_or_run(
     process: Callable[..., Any],

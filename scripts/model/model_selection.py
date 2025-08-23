@@ -289,7 +289,7 @@ class Transformer(Protocol):
     def transform(self, X): ...
     def fit_transform(self, X, y=None): ...
 
-
+  
 class EncoderNameScalerDigitCols(ColumnTransformer):
     """
     A custom ColumnTransformer that applies a specified encoder to a set of columns (typically categorical),
@@ -324,38 +324,24 @@ class EncoderNameScalerDigitCols(ColumnTransformer):
                  remainder:Transformer|str='passthrough',
                  verbose_feature_names_out:bool=True):  
         # transformers_columns is a list of tuples (transformer, columns) specifying the transformer objects to be applied to the columns 
-        self.transformers_columns = transformers_columns
-        self.encoder_columns = encoder_columns
         self.encoder = encoder
+        self.encoder_columns = encoder_columns
+        self.transformers_columns = transformers_columns
         self.remainder = remainder
         self.verbose_feature_names_out=verbose_feature_names_out
         transformer_sequence = self._make_transformer_tuples()
-        super().__init__(transformers=transformer_sequence, remainder=self.remainder, verbose_feature_names_out=self.verbose_feature_names_out)  
+        super().__init__(transformers=transformer_sequence, remainder=self.remainder, verbose_feature_names_out=self.verbose_feature_names_out)
         # self.set_output(transform='pandas')
   
-    def get_params(self, deep=True):  
-        params = super().get_params(deep=deep)
-        params['transformers_columns'] = self.transformers_columns 
-        params['encoder_columns'] = self.encoder_columns
-        params['encoder'] = self.encoder
-        params['remainder'] = self.remainder
-        return params  
-  
     def set_params(self, **params):
-        self.transformers_columns = params.pop('transformers_columns',self.transformers_columns)
-        self.encoder_columns = params.pop('encoder_columns',self.encoder_columns)
+        # need to set transformers attribute to let ColumnTransformer see the changes
         self.encoder = params.pop('encoder',self.encoder) 
+        self.encoder_columns = params.pop('encoder_columns',self.encoder_columns)
+        self.transformers_columns = params.pop('transformers_columns',self.transformers_columns)
+        self.remainder = params.pop('remainder', self.remainder)
         self.verbose_feature_names_out = params.pop('verbose_feature_names_out', self.verbose_feature_names_out)
-        print('set',self.transformers_columns)
-        transformer_sequence = self._make_transformer_tuples()
-        encoder_columns = self.encoder_columns
-        encoder = self.encoder
-        verbose_feature_names_out = self.verbose_feature_names_out
-        self = ColumnTransformer(transformers=transformer_sequence, remainder=self.remainder, verbose_feature_names_out=self.verbose_feature_names_out)  
-        self.encoder_columns = encoder_columns
-        self.encoder = encoder
-        self.verbose_feature_names_out = verbose_feature_names_out
-        super().set_params(**params)
+        self.transformers = self._make_transformer_tuples() # set transformers_tuples attribute as well
+        super().set_params( **params)
         return self
   
     def _make_transformer_tuples(self):
@@ -368,8 +354,7 @@ class EncoderNameScalerDigitCols(ColumnTransformer):
         return [
             ('name_encoder', self.encoder, self.encoder_columns),
             *self.transformers_tuples, 
-        ]
-    
+        ]    
 
 class NamedTransformer(BaseEstimator, TransformerMixin):
     """

@@ -283,9 +283,8 @@ def _extract_top_fit_scores(res, n, cv_results, fit_scores, params_names, confus
 
 
 def create_comparation_table(stages_grid_search_results, stages_names, models_to_compare, params_to_compare):
-    from helpers import extract_capitals_with_following
     comparation_df = pd.DataFrame(
-        index=pd.MultiIndex.from_product([models_to_compare, params_to_compare], names=['model', 'param']),
+        index=pd.MultiIndex.from_product([models_to_compare, []], names=['model', 'param']),
         columns=stages_names#['presecelecting', 'scaler-reducer', 'scaler-reducer2', 'train_len', 'diff sr2-len']
     )
     def compare_row(row):
@@ -303,12 +302,10 @@ def create_comparation_table(stages_grid_search_results, stages_names, models_to
             key_res = results_by_name[model_name]
             if 'score' in params_to_compare:
                 comparation_df.loc[(model_name, 'score'), stage_name] = key_res['Best scores']
-            for param_name in params_to_compare:
-                if param_name != 'score' and param_name in key_res['Best parameters']:
-                    comparation_df.loc[(model_name, param_name), stage_name] = extract_capitals_with_following(str(key_res['Best parameters'][param_name]))
+            
             #  params
             for k, v in key_res['Best parameters'].items():
-                if model_name in k:
+                if model_name in k or any(x in k for x in params_to_compare):
                     par_name = k.split('__')[-1]
                     comparation_df.loc[(model_name, f'{par_name}_best'), stage_name] = str(v)
                     comparation_df.loc[(model_name, f'{par_name}_grid'), stage_name] = str(key_res['Parameters grid'][k])
