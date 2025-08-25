@@ -1,0 +1,6 @@
+randomforestclassifier:
+Best parameters: {'randomforestclassifier__max_depth': 1, 'randomforestclassifier__max_features': None, 'randomforestclassifier__min_samples_leaf': 12, 'randomforestclassifier__n_estimators': 100, 'reduce_dim': FastICA(), 'reduce_dim__n_components': 13, 'transformer': target_quantile_power_kbins_u}
+Best score: 0.5301448643387604
+Grid serach time: 107.46182514833441 minutes
+Reducer: {'model': FastICA(), 'params': {'n_components': [2]}}
+Column transformer: NamedTransformer(name='ordinal_std_quantile_power_kbins_q', transformer=EncoderNameScalerDigitCols(encoder=OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=555), encoder_columns=['Name'], transformers_columns=[(StandardScaler(), ['rsi', 'cmf']), (PowerTransformer(), ['Bollinger_width']), (KBinsDiscretizer(n_bins=10), ['Aroon_down', 'Aroon_up']), (QuantileTransformer(output_distribution='normal'), ['Bollinger_mavg', 'pvo', 'macd', 'dpo', 'kst_diff', 'adi', 'force_index', 'ease_of_movement', 'sma_ease_of_movement', 'volume_price_trend', 'nvi', 'day_return', 'cumulative_return'])], verbose_feature_names_out=False))

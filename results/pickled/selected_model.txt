@@ -1,4 +1,4 @@
 randomforestclassifier:
-Best parameters: {'randomforestclassifier__max_depth': 3, 'randomforestclassifier__max_features': None, 'randomforestclassifier__min_samples_leaf': 15, 'randomforestclassifier__n_estimators': 100, 'reduce_dim': FastICA(), 'reduce_dim__n_components': 14, 'transformer': target_quantile_power_kbins_u}
-Best score: 0.5253789534120157
-Grid serach time: 130.92294571333332 minutes
+Best parameters: {'randomforestclassifier__max_depth': 3, 'randomforestclassifier__max_features': None, 'randomforestclassifier__min_samples_leaf': 3, 'randomforestclassifier__n_estimators': 200, 'randomforestclassifier__train_length': 280210, 'reduce_dim__n_components': 2}
+Best score: 0.5300812738736321
+Grid serach time: 702.9265654899995 minutes
